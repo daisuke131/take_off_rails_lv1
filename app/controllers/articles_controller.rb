@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
+  before_action :current_user, only: [:create, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -26,7 +27,11 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
+    def current_user
+      User.first
+    end
+
     def article_params
-      params.require(:article).permit(:title, :body, :user_id)
+      params.require(:article).permit(:title, :body).merge(user_id: current_user.id)
     end
 end
