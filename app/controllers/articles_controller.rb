@@ -7,12 +7,11 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
-    case @article.status
-    when "draft"
-      @article = current_user.articles.find(params[:id])
-    when "published"
-      @article = Article.published.find(params[:id])
+    @article =
+    if current_user
+      current_user.articles.find(params[:id])
+    else
+      Article.published.find(params[:id])
     end
     render json: @article
   end
