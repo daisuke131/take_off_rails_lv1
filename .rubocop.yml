@@ -1,0 +1,14 @@
+inherit_gem:
+  onkcop:
+    - "config/rubocop.yml"
+    - "config/rails.yml"
+    - "config/rspec.yml"
+
+AllCops:
+  TargetRubyVersion: 2.6.1
+  TargetRailsVersion: 5.2.3
+  Exclude:
+    - "node_modules/**/*" # rubocop config/default.yml
+    - "vendor/**/*" # rubocop config/default.yml
+    - "db/schema.rb"
+    - "db/migrate/**/*"
