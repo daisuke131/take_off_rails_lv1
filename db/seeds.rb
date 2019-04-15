@@ -1,10 +1,8 @@
-5.times do |n|
+5.times do |_n|
   user = User.create!(account: Faker::Internet.username,
-               name: Faker::JapaneseMedia::DragonBall.character,
-               email: Faker::Internet.email,
-  )
+                      name: Faker::JapaneseMedia::DragonBall.character,
+                      email: Faker::Internet.email)
 
   user.articles.create!(title: Faker::Lorem.word,
-                        body: Faker::Lorem.sentence,
-  )
+                        body: Faker::Lorem.sentence)
 end
