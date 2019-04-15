@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   context "account を指定しているとき" do
@@ -19,13 +19,12 @@ RSpec.describe User, type: :model do
   end
 
   context "同名の account が存在するとき" do
-    let!(:user) { create(:user, account: "account") }
+    let(:user1) { create(:user, account: "account") }
+    let(:user2) { build(:user, account: user1.account) }
 
     it "エラーする" do
-      user = build(:user, account: "account")
-      user.valid?
-      expect(user.errors.messages[:account]).to include "has already been taken"
+      user2.valid?
+      expect(user2.errors.messages[:account]).to include "has already been taken"
     end
   end
-
 end
